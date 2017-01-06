@@ -52,21 +52,12 @@ current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
 ifeq ($(TARGET_KERNEL_VERSION),)
     TARGET_KERNEL_VERSION := 3.18
 endif
-TARGET_KERNEL := msm-$(TARGET_KERNEL_VERSION)
-ifeq ($(TARGET_KERNEL),$(current_dir))
-    # New style, kernel/msm-version
-    BUILD_ROOT_LOC := ../../
-    TARGET_KERNEL_SOURCE := kernel/$(TARGET_KERNEL)
-    KERNEL_OUT := $(TARGET_OUT_INTERMEDIATES)/kernel/$(TARGET_KERNEL)
-    KERNEL_SYMLINK := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ
-    KERNEL_USR := $(KERNEL_SYMLINK)/usr
-else
-    # Legacy style, kernel source directly under kernel
-    KERNEL_LEGACY_DIR := true
-    BUILD_ROOT_LOC := ../
-    TARGET_KERNEL_SOURCE := kernel
-    KERNEL_OUT := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ
-endif
+TARGET_KERNEL := google/marlin
+BUILD_ROOT_LOC := ../../../
+TARGET_KERNEL_SOURCE := kernel/$(TARGET_KERNEL)
+KERNEL_OUT := $(TARGET_OUT_INTERMEDIATES)/kernel/$(TARGET_KERNEL)
+KERNEL_SYMLINK := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ
+KERNEL_USR := $(KERNEL_SYMLINK)/usr
 
 KERNEL_CONFIG := $(KERNEL_OUT)/.config
 
